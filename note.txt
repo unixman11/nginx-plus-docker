@@ -1,0 +1,11 @@
+#build
+DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect .
+
+#verify
+docker images app-protect
+
+#create container
+docker run --name my-app-protect -p 80:80 -d app-protect
+
+#verify container
+docker ps
