@@ -1,0 +1,13 @@
+docker build --no-cache --secret id=nginx-key,src=nginx-repo.key --secret id=nginx-crt,src=nginx-repo.crt -t nginx-plus-m1 .
+
+docker images nginx-plus-m1
+
+docker run --name demo_nginx-plus-m1 -p 8080:80 -d nginx-plus-m1
+docker run --name demo_nginx-plus-m1 -p 80:80 -p 81:81 -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8088:8088 -d nginx-plus-m1
+
+docker ps
+
+docker exec -it demo_nginx-plus-m1 bash
+
+docker stop demo_nginx-plus-m1 && docker rm demo_nginx-plus-m1
+docker rmi nginx-plus-m1
